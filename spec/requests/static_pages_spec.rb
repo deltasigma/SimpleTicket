@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Static Pages" do
 
+  let(:base_title) {"Simple Ticket: The Pragmatic Ticket System |"}
+
   describe "Home Page" do
     it "should have the h1 'Simple Ticket'" do
       visit '/static_pages/home'
@@ -11,7 +13,7 @@ describe "Static Pages" do
     it "should have the right title" do
       visit '/static_pages/home'
       page.should have_selector('title',
-                        :text => "Simple Ticket: The Pragmatic Ticket System | Home")
+                        :text => "#{base_title} Home")
     end
   end
 
@@ -24,7 +26,7 @@ describe "Static Pages" do
     it "should have the right title" do
       visit '/static_pages/help'
       page.should have_selector('title',
-                        :text => "Simple Ticket: The Pragmatic Ticket System | Help")
+                        :text => "#{base_title} Help")
     end
   end
 
@@ -37,8 +39,20 @@ describe "Static Pages" do
     it "should have the right title" do
       visit '/static_pages/about'
       page.should have_selector('title',
-                        :text => "Simple Ticket: The Pragmatic Ticket System | About")
+                        :text => "#{base_title} About")
     end
   end
 
+  describe "Contact" do
+    it "should have the h1 'Contact Us'" do
+      visit '/static_pages/contact'
+      page.should have_selector('h1',
+                        :text => "Contact Us")
+    end
+    it "should have the right title" do
+      visit '/static_pages/contact'
+      page.should have_selector('title',
+                        :text => "#{base_title} Contact Us")
+    end
+  end
 end
